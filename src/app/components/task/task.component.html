@@ -1,0 +1,15 @@
+<div class="card mx-auto my-4 shadow-lg rounded-3" style="width: 80%;">
+  <div class="card-body py-1">
+    <h4 class="card-title d-flex justify-content-between align-items-center py-0" style="cursor: pointer;" [routerLink]="'task/'+name+'/'+task?.id">
+      <span>{{task?.title}}</span>
+      <span class="badge text-light bg-primary">#{{task?.tag}}</span>
+    </h4>
+  </div>
+  <img [src]="task?.img" class="card-img" alt="img">
+  <div class="card-body py-2">
+    <div class="d-flex justify-content-between align-item-center py-1">
+      <p class=" py-0">{{task?.duedate}}</p>
+      <p class=" my-0 py-0" *ngIf="task?.completionflag">complete <i style="color: rgb(146, 182, 38)" class="fa-solid fa-circle-check"></i></p>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,42 @@
+<div class="container pt-3">
+  <div class="row">
+    <div class="col-12 col-sm-6">
+      <div class="d-flex border-bottom align-items-center justify-content-between py-4">
+        <div class="w-25">
+          <img class="img-fluid" [src]="data?.img" alt="img">
+        </div>
+        <h3 class="m-0">{{data?.title}}</h3>
+        <h2 class="m-0"><span class="badge text-light bg-primary">#{{data?.tag}}</span></h2>
+      </div>
+
+      <div class="py-3">
+        <h3 class="fw-bolder">Description</h3>
+        <p class="border border-dark py-3 px-1">{{data?.description}}</p>
+      </div>
+      <div>
+        <div class="d-flex justify-content-between align-item-center py-1">
+          <p class=" py-0">{{data?.duedate}}</p>
+          <p class=" my-0 py-0" *ngIf="data?.completionflag" >complete <i style="color: rgb(146, 182, 38)" class="fa-solid fa-circle-check"></i></p>
+        </div>
+      </div>
+
+    </div>
+    <div class="col-12 col-sm-5 m-auto" cdkDropList [cdkDropListData]="data.activities" (cdkDropListDropped)="drop($event)">
+      <h3>Activities</h3>
+        <ul class="list-group" >
+          <li class="list-group-item px-3 " *ngFor="let item of data?.activities" cdkDrag>
+              <input (change)="updateActivatycomplete(item.id , checkact.checked)" #checkact class="mx-2" type="checkbox" [checked]="item?.complete" [value]="item.complete" aria-label="...">
+              <span [ngStyle]="{'text-decoration':(item?.complete)?'line-through':'none' }">{{item?.title}}</span>
+          </li>
+        </ul>
+
+        <div class="py-3">
+          <input (change)="updateCopmlete(checkcomp.checked)" #checkcomp  class="mx-2" type="checkbox" [checked]="data?.completionflag" [value]="data?.completionflag" aria-label="...">
+
+          <span> Task complete</span>
+        </div>
+    </div>
+
+  </div>
+
+</div>
